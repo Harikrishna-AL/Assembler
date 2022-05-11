@@ -154,13 +154,14 @@ int main(){
     ofstream output;
     output.open("output.asm");
 
-    while(getline(File,line)){
+    while(getline(File,instruction)){
 
-        if(A_inst(line)){
+        if(A_inst(instruction)){
             // cout<<line<<endl;
-        if(line[1]=='R'){
+        if(instruction[1]=='R'){
             // cout<<line<<endl;
-            string sub = line.substr(1);
+            string sub = instruction.substr(1);
+
             // sub.erase(sub.length()-1);
             string num1 = preDef[sub];
             // cout<<sub<<endl;
@@ -170,7 +171,8 @@ int main(){
             output<<final1<<endl;
         }
         else{
-            string num = line.substr(1);
+            string num = instruction.substr(1);
+            // cout<<num;
             string temp1 = decToBinary(stoi(num));
             string temp2 = addZeros(temp1);
             string final = "0" + temp2;
@@ -180,7 +182,7 @@ int main(){
 
         }
 
-    if(A_inst(line)==false && symbol(line)==false){
+    if(A_inst(instruction)==false && symbol(instruction)==false){
         int equalSignPosition = instruction.find("=");
         int semiColonPosition = instruction.find(";");
     // if(equalSignPosition!=string::npos){
